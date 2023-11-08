@@ -1,0 +1,113 @@
+:root {
+    --bg: #2c3e50;
+    --bg-alt: #34495e;
+    --accent: #2ecc71;
+}
+body {
+    background-color: #2c3e50;
+    color: white;
+    margin: 0 auto;
+}
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+/*
+* Dashboard
+*/
+body.dashboard {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+body.dashboard nav {
+    width: 300px;
+    height: 100vh;
+    background-color: var(--bg-alt);
+}
+body.dashboard nav h2 {
+    padding: 20px 40px;
+}
+body.dashboard nav ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+body.dashboard nav ul a {
+    display: block;
+    width: 100%;
+    padding: 20px 40px;
+    text-decoration: none;
+}
+body.dashboard nav ul a:hover {
+    background-color: var(--bg);
+}
+body.dashboard main {
+    padding: 30px;
+}
+body.dashboard main h1 {
+    padding: 0;
+    margin: 0;
+}
+
+/*
+* Inputs, buttons & links
+*/
+input {
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+}
+input:focus {
+    outline-color: var(--accent);
+}
+
+button {
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: var(--accent);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    cursor: pointer;
+}
+a {
+    color: var(--accent);
+}
+
+/*
+* Forms
+*/
+.flex-form {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 40px auto;
+}
+
+.flex-form h1 {
+    text-align: center;
+}
+
+.flex-form label,
+.flex-form button {
+    margin-top: 10px;
+}
+
+.flex-form a {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.flex-form a:hover {
+    text-decoration: underline;
+}
