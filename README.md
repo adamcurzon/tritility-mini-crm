@@ -18,3 +18,11 @@ php artisan migrate
 php artisan db:seed
 php artisan serve
 ```
+
+3. Visit http://127.0.0.1:8000/
+
+4. Login with these credentiuals
+
+    Email: `admin@admin.com`
+
+    Password: `password`
