@@ -56,6 +56,11 @@ class CompanyController extends Controller
     public function show(string $id)
     {
         $company = $this->companyRepository->read($id);
+
+        if (!$company) {
+            return Redirect()->route('company.index');
+        }
+
         return view('company.show', ['company' => $company]);
     }
 
@@ -94,7 +99,7 @@ class CompanyController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->companyRepository->delete($id);
-        return Redirect()->route('company.index')->with('deleted', true);
+        $deleted = $this->companyRepository->delete($id);
+        return Redirect()->route('company.index')->with('deleted', $deleted);
     }
 }

@@ -38,8 +38,13 @@ class EmployeeRepository implements ResourceRepositroyInterface
 
     public function delete(string $id): bool
     {
-        $company = Employee::where('id', $id)->first();
-        $company->delete();
+        $employee = Employee::where('id', $id)->first();
+
+        if (!$employee) {
+            return false;
+        }
+
+        $employee->delete();
         return true;
     }
 }

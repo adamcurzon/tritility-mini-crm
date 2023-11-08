@@ -40,6 +40,9 @@ class CompanyRepository implements ResourceRepositroyInterface
     public function delete(string $id): bool
     {
         $company = Company::where('id', $id)->first();
+        if (!$company) {
+            return false;
+        }
         $company->employee()->delete();
         $company->delete();
         return true;
