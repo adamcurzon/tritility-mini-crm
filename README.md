@@ -1,4 +1,4 @@
-### Mini CRM ⚙️
+# Mini CRM ⚙️
 
 This is a MiniCRM for managing companies and employees.
 
@@ -27,3 +27,6 @@ composer exec phpunit
     Email: `admin@admin.com`
 
     Password: `password`
+
+## Next Steps
+1. Add image uploads [Docs](https://laravel.com/docs/10.x/filesystem#file-uploads)
