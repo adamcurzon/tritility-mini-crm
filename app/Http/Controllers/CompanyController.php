@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CompanyRepository;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __construct(
+        private CompanyRepository $companyRepository
+    ) {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('company.index');
+        $companies = $this->companyRepository->page(1);
+        return view('company.index', ['companies' => $companies]);
     }
 
     /**
@@ -35,7 +42,9 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $company = $this->companyRepository->read($id);
+        $employees = $this->companyRepository->getEmployees($id);
+        return view('company.show', ['company' => $company, 'employees' => $employees]);
     }
 
     /**

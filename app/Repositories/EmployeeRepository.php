@@ -2,13 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Interface\ResourceRepositroyInterface;
+use Illuminate\Support\Facades\DB;
+use App\Interfaces\ResourceRepositroyInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class EmployeeRepository extends ResourceRepositroyInterface
+class EmployeeRepository implements ResourceRepositroyInterface
 {
-    public function page(int $pageNumber): array
+    const PER_PAGE = 10;
+    const TABLE_NAME = 'employees';
+
+    public function page(int $pageNumber): LengthAwarePaginator
     {
-        return [];
+        return DB::table(self::TABLE_NAME)->paginate($pageNumber * self::PER_PAGE);
     }
 
     public function create($payload, string $id): string
@@ -18,7 +23,7 @@ class EmployeeRepository extends ResourceRepositroyInterface
 
     public function read(string $id)
     {
-        return [];
+        return DB::table(self::TABLE_NAME)->where('id', $id)->first();
     }
 
     public function update(string $id): bool

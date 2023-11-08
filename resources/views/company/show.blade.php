@@ -1,8 +1,23 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<h1>Employees</h1>
+<h1>Company</h1>
+<a href="/company">Back to all Companies</a>
 
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Email</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{$company->name}}</td>
+            <td>{{$company->email}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Employees</h2>
 <table>
     <thead>
         <th>First Name</th>
@@ -21,5 +36,4 @@
         @endforeach
     </tbody>
 </table>
-<button>Load More</button>
 @stop

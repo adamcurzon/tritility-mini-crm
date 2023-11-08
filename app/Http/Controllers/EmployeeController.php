@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\EmployeeRepository;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    public function __construct(private EmployeeRepository $employeeRepository)
+    {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('employee.index');
+        $employees = $this->employeeRepository->page(1);
+        return view('employee.index', ['employees' => $employees]);
     }
 
     /**
@@ -35,7 +40,8 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $employee = $this->employeeRepository->read($id);
+        return view('employee.show', ['employee' => $employee]);
     }
 
     /**
