@@ -17,7 +17,7 @@ composer install
 php artisan migrate
 php artisan db:seed
 php artisan serve
-composer exec phpunit
+php artisan test --testsuite=Feature
 ```
 
 3. Visit http://127.0.0.1:8000/
