@@ -12,11 +12,10 @@
 
     <main>
         @yield('content')
+        <footer>
+            @include('includes.footer')
+        </footer>
     </main>
-
-    <footer>
-        @include('includes.footer')
-    </footer>
 </body>
 
 </html>

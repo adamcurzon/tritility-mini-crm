@@ -13,8 +13,12 @@ body {
     font-family: "Poppins", sans-serif;
 }
 footer {
+    margin: 0 auto;
+    font-size: 12px;
     position: absolute;
+    padding: 20px 0px;
     bottom: 0;
+    opacity: 0.2;
 }
 
 /*
@@ -34,6 +38,7 @@ body.dashboard nav h2 {
     padding: 20px 40px;
 }
 body.dashboard nav ul {
+    position: absolute;
     list-style-type: none;
     width: 100%;
     padding: 0;
@@ -44,6 +49,12 @@ body.dashboard nav ul a {
     width: 100%;
     padding: 20px 40px;
     text-decoration: none;
+}
+
+body.dashboard nav ul li.bottom {
+    position: fixed;
+    bottom: 0;
+    width: 300px;
 }
 body.dashboard nav ul a:hover {
     background-color: var(--bg);
