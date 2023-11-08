@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
@@ -17,13 +18,19 @@ use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('login');
-});
+})->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::resources([
-    'company' => CompanyController::class,
-    'employee' => EmployeeController::class,
-]);
+// Protected routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+    Route::resources([
+        'company' => CompanyController::class,
+        'employee' => EmployeeController::class,
+    ]);
+});
