@@ -30,3 +30,5 @@ php artisan test --testsuite=Feature
 
 ## Next Steps
 1. Add image uploads [Docs](https://laravel.com/docs/10.x/filesystem#file-uploads)
+2. Add logger service for errors
+3. Catch databaseRepository errors
