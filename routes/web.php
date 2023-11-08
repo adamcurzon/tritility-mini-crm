@@ -16,7 +16,11 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
 
 Route::resources([
