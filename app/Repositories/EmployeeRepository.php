@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use App\Interfaces\ResourceRepositroyInterface;
+use App\Models\Employee;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class EmployeeRepository implements ResourceRepositroyInterface
@@ -13,26 +14,32 @@ class EmployeeRepository implements ResourceRepositroyInterface
 
     public function page(int $pageNumber): LengthAwarePaginator
     {
-        return DB::table(self::TABLE_NAME)->paginate($pageNumber * self::PER_PAGE);
+        return DB::table(self::TABLE_NAME)->orderBy('created_at', 'desc')->paginate($pageNumber * self::PER_PAGE);
     }
 
-    public function create($payload, string $id): string
+    public function create($payload): string
     {
-        return "id1";
+        $employee = Employee::create($payload);
+        return $employee->id;
     }
 
     public function read(string $id)
     {
-        return DB::table(self::TABLE_NAME)->where('id', $id)->first();
+        return Employee::where('id', $id)->with('company')->first();
     }
 
-    public function update(string $id): bool
+    public function update(array $payload, string $id): bool
     {
+        DB::table(self::TABLE_NAME)
+            ->where('id', $id)
+            ->update($payload);
         return true;
     }
 
     public function delete(string $id): bool
     {
+        $company = Employee::where('id', $id)->first();
+        $company->delete();
         return true;
     }
 }

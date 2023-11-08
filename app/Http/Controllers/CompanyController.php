@@ -17,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = $this->companyRepository->page(1);
+        $companies = $this->companyRepository->page($_GET['pages'] ?? 1);
         return view('company.index', ['companies' => $companies]);
     }
 
@@ -26,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.new');
     }
 
     /**
@@ -34,7 +34,20 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCompany = $request->validate([
+            'name' => ['required'],
+            'email' => ['email', 'nullable'],
+            'logo' => ['string', 'nullable'],
+            'website' => ['string', 'nullable']
+        ]);
+
+        $newCompanyId = $this->companyRepository->create($newCompany);
+
+        if ($newCompanyId) {
+            return Redirect()->route('company.show', [$newCompanyId])->with('created', true);
+        } else {
+            return back()->withInput()->withError();
+        }
     }
 
     /**
@@ -43,8 +56,7 @@ class CompanyController extends Controller
     public function show(string $id)
     {
         $company = $this->companyRepository->read($id);
-        $employees = $this->companyRepository->getEmployees($id);
-        return view('company.show', ['company' => $company, 'employees' => $employees]);
+        return view('company.show', ['company' => $company]);
     }
 
     /**
@@ -52,7 +64,8 @@ class CompanyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $company = $this->companyRepository->read($id);
+        return view('company.edit', ['company' => $company]);
     }
 
     /**
@@ -60,7 +73,20 @@ class CompanyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updatedCompany = $request->validate([
+            'name' => ['required'],
+            'email' => ['email', 'nullable'],
+            'logo' => ['string', 'nullable'],
+            'website' => ['string', 'nullable']
+        ]);
+
+        $status = $this->companyRepository->update($updatedCompany, $id);
+
+        if ($status) {
+            return Redirect()->back()->with('status', 'true');
+        } else {
+            return Redirect()->back()->withError();
+        }
     }
 
     /**
@@ -68,6 +94,7 @@ class CompanyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->companyRepository->delete($id);
+        return Redirect()->route('company.index')->with('deleted', true);
     }
 }
