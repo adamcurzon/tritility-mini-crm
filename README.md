@@ -2,7 +2,7 @@
 
 This is a MiniCRM for managing companies and employees.
 
-![Preview Images]([http://url/to/img.png](https://raw.githubusercontent.com/adamcurzon/tritility-mini-crm/main/preview/Screenshot%202023-11-08%20at%2015.39.33.png))
+<img width="400" src="https://raw.githubusercontent.com/adamcurzon/tritility-mini-crm/main/preview/Screenshot%202023-11-08%20at%2015.39.33.png" />
 
 [Preview Images](123) 🎇
 
