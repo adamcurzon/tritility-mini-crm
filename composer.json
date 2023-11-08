@@ -10,7 +10,6 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "phpunit/phpunit": "^10.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
