@@ -2,5 +2,6 @@
 
 @section('content')
 <h1>Dashboard</h1>
-<p>Welcome to MiniCRM</p>
+<h2>Welcome to MiniCRM</h2>
+<img src="{{asset('images/welcome.gif')}}" />
 @stop

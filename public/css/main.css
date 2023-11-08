@@ -3,6 +3,7 @@
     --bg-alt: #34495e;
     --accent: #2ecc71;
     --nav-width: 300px;
+    --table-alt: #233445;
 }
 body {
     background-color: #2c3e50;
@@ -20,6 +21,7 @@ footer {
     padding: 20px 0px;
     bottom: 0;
     opacity: 0.2;
+    right: 20px;
 }
 
 /*
@@ -33,7 +35,7 @@ body.dashboard {
 body.dashboard nav {
     width: var(--nav-width);
     height: 100vh;
-    background-color: var(--bg-alt);
+    background-color: var(--table-alt);
 }
 body.dashboard nav h2 {
     padding: 20px 40px;
@@ -62,39 +64,53 @@ body.dashboard nav ul li.bottom {
     bottom: 0;
 }
 body.dashboard nav ul a:hover {
+    transition: padding 0.2s ease;
     background-color: var(--bg);
+    padding-left: 60px;
 }
 body.dashboard main {
     width: calc(100% - var(--nav-width));
     padding: 30px;
+    overflow-y: scroll;
 }
 body.dashboard main h1 {
     padding: 0;
     margin: 0;
-    margin-bottom: 25px;
 }
 
 /*
 * Inputs, buttons & links
 */
-input {
+input,
+select {
+    min-width: 300px;
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 10px 20px;
+    color: white;
 }
 input:focus {
     outline-color: var(--accent);
 }
 
-button {
+button,
+.button {
     border-radius: 5px;
     padding: 10px 20px;
     background-color: var(--accent);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.4) !important;
     cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
 }
+
+button:hover,
+.button {
+    opacity: 0.8;
+}
+
 a {
     color: var(--accent);
 }
@@ -130,9 +146,17 @@ a {
     text-decoration: underline;
 }
 
+.flex-form .error {
+    text-align: center;
+}
+
 .error {
     color: red;
-    text-align: center;
+}
+
+.required:after {
+    content: " *";
+    color: red;
 }
 
 /*
@@ -141,7 +165,7 @@ a {
 table {
     border-collapse: collapse;
     width: 100%;
-    margin: 50px 0px;
+    margin: 25px 0px;
 }
 
 table td,
@@ -153,10 +177,116 @@ table tr:nth-child(odd) {
     background-color: var(--bg-alt);
 }
 
+table tr:nth-child(even) {
+    background-color: var(--table-alt);
+}
+
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: var(--accent);
     color: white;
+}
+
+table.form th {
+    background-color: transparent;
+    color: var(--accent);
+}
+
+/*
+* Actions
+*/
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.actions a,
+.actions_a {
+    border: 2px solid !important;
+    border-color: var(--accent);
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.actions a:hover,
+.actions_a:hover {
+    opacity: 0.5;
+}
+
+.actions .edit {
+    border-color: #e67e22;
+    color: #e67e22;
+}
+
+.actions .view {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.actions button {
+    background-color: transparent;
+    border: 0;
+}
+
+.actions_a.delete,
+.actions .delete {
+    border-color: red;
+    color: red;
+    padding: 10px 20px;
+}
+
+/*
+* Noices
+*/
+
+.notice {
+    width: 100%;
+    padding: 20px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    animation: flash 5s forwards;
+}
+
+.notice.success {
+    background-color: var(--accent);
+}
+
+.notice.info {
+    background-color: #e67e22;
+}
+
+.notice.errors {
+    background-color: red;
+}
+
+@keyframes flash {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+        display: block;
+    }
+    99.9% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
