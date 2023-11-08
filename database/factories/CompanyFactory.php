@@ -19,10 +19,10 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->name() . " LTD",
             'email' => fake()->unique()->safeEmail(),
-            'logo' => 'default.png',
-            'website' => 'https://www.tritility.com/',
+            'logo' => fake()->uuid() . ".png",
+            'website' => fake()->url,
         ];
     }
 }

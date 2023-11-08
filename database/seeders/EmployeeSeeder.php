@@ -16,5 +16,9 @@ class EmployeeSeeder extends Seeder
             'email' => 'adam@curzon.org',
             'phone' => '01913675000'
         ]);
+
+        \App\Models\Employee::factory()
+            ->count(100)
+            ->create();
     }
 }

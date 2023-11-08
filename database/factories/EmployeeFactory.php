@@ -21,7 +21,7 @@ class EmployeeFactory extends Factory
         return [
             'first_name' => fake()->name(),
             'last_name' => fake()->name(),
-            'company_id' => 1,
+            'company_id' => rand(1, 50),
             'email' => fake()->unique()->safeEmail(),
             'phone' => '01913675000',
         ];

@@ -15,5 +15,9 @@ class CompanySeeder extends Seeder
             'logo' => 'default.png',
             'website' => 'https://www.tritility.com/',
         ]);
+
+        \App\Models\Company::factory()
+            ->count(50)
+            ->create();
     }
 }
